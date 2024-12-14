@@ -244,6 +244,47 @@ class DashboardScreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+
+            // products section
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Column(
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'منتجات اخرى',
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'مشاهدة الكل',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      )
+                    ],
+                  ),
+                  Container(
+                    height: 250,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Product(
+                          label: 'عرض خاص للعمل مع اوبر',
+                        ),
+                        Product(label: 'تاجير مركبة'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
@@ -358,6 +399,50 @@ class BankTransactionOrder extends StatelessWidget {
                 )
             ],
           )
+        ],
+      ),
+    );
+  }
+}
+
+class Product extends StatelessWidget {
+  final String label;
+
+  Product({required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 247, 244, 236),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Image.network(
+            'https://via.placeholder.com/150',
+            height: 160,
+            width: 200,
+          ),
+          // Image.asset(
+          //   imagePath,
+          //   height: 80,
+          // )
         ],
       ),
     );

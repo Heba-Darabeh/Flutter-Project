@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_project/confirmation_screen.dart';
 import 'package:flutter_project/dashboard_screen.dart';
+import 'package:country_icons/country_icons.dart';
 
 class WithdrawalScreen extends StatefulWidget {
   @override
@@ -99,6 +100,18 @@ class _InputAmountState extends State<WithdrawalScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          ClipOval(
+                            child: Image.asset(
+                              'icons/flags/png/sa.png',
+                              package: 'country_icons',
+                              width: 30,
+                              height: 30,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           const Text(
                             'ر.س.', // Saudi Riyal symbol
                             style: TextStyle(

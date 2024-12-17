@@ -115,7 +115,7 @@ class ConfirmationScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      Transactionconfirmationmessage()));
+                                      const TransactionConfirmationMessage()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(89, 25, 101, 1),

@@ -9,16 +9,23 @@ class PinEntryScreen extends StatefulWidget {
 }
 
 class _PinEntryScreenState extends State<PinEntryScreen> {
-  List<Color> dots = [
-    Color.fromRGBO(227, 225, 230, 0.988),
-    Color.fromRGBO(227, 225, 230, 0.988),
-    Color.fromRGBO(227, 225, 230, 0.988),
-    Color.fromRGBO(227, 225, 230, 0.988),
-    Color.fromRGBO(227, 225, 230, 0.988),
-    Color.fromRGBO(227, 225, 230, 0.988),
-  ];
+  List<Color> dots = List.generate(6, (index) => Colors.grey);
   int currentIndex = 0;
   String inputValue = "";
+
+  @override
+  void initState() {
+    super.initState();
+    resetPin(); // Reset PIN input on screen initialization
+  }
+
+  void resetPin() {
+    setState(() {
+      inputValue = '';
+      dots = List.generate(6, (index) => Colors.grey);
+      currentIndex = 0;
+    });
+  }
 
   // Function to handle key press
   void onKeyPressed(String value) {
@@ -30,12 +37,16 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
       });
     }
     if (currentIndex == 6) {
-      Navigator.push(
-        context,
+      Navigator.of(context)
+          .pushAndRemoveUntil(
         MaterialPageRoute(
-            builder: (context) =>
-                DashboardScreen()), // NextPage is the next screen
-      );
+          builder: (context) => DashboardScreen(),
+        ),
+        (Route<dynamic> route) => false,
+      )
+          .then((_) {
+        resetPin();
+      });
     }
   }
 
@@ -56,7 +67,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Scaffold(
-          appBar: AppBar(actions: [
+          appBar: AppBar(automaticallyImplyLeading: false, actions: [
             GestureDetector(
                 onTap: () {
                   //

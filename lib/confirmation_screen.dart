@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_project/withdrawal_screen.dart';
 import 'package:flutter_project/TransactionConfirmationMessage.dart';
 
@@ -115,7 +114,7 @@ class ConfirmationScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const TransactionConfirmationMessage()));
+                                      TransactionConfirmationMessage()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(89, 25, 101, 1),

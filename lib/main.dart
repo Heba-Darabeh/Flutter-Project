@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/pin_entry_screen.dart';
 import 'package:flutter_project/splash_screen.dart';
 
 void main() {

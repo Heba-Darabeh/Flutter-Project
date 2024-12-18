@@ -1,9 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'withdrawal_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -196,12 +196,12 @@ class DashboardScreen extends StatelessWidget {
             // financial transaction section
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: Directionality(
+              child: const Directionality(
                 textDirection: TextDirection.rtl,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -275,7 +275,7 @@ class DashboardScreen extends StatelessWidget {
                     height: 250,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children: [
+                      children: const [
                         Product(
                           label: 'عرض خاص للعمل مع اوبر',
                         ),
@@ -294,6 +294,7 @@ class DashboardScreen extends StatelessWidget {
       bottomNavigationBar: Directionality(
         textDirection: TextDirection.rtl,
         child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             showUnselectedLabels: true,
             unselectedItemColor: const Color.fromARGB(255, 187, 187, 187),
             selectedItemColor: Color.fromRGBO(76, 40, 116, 1),
@@ -319,7 +320,8 @@ class BankTransactionOrder extends StatelessWidget {
   final String amount;
   final bool isActive;
 
-  BankTransactionOrder({
+  const BankTransactionOrder({
+    super.key,
     required this.date,
     required this.time,
     required this.amount,
@@ -408,7 +410,7 @@ class BankTransactionOrder extends StatelessWidget {
 class Product extends StatelessWidget {
   final String label;
 
-  Product({required this.label});
+  const Product({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/dashboard_screen.dart';
 
 class TransactionConfirmationMessage extends StatefulWidget {
-  const TransactionConfirmationMessage({super.key});
-
   @override
   _confirmationMessageState createState() => _confirmationMessageState();
 }

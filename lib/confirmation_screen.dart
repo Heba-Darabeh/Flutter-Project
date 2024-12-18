@@ -39,102 +39,109 @@ class ConfirmationScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.fromLTRB(10, 30, 20, 10),
-          child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: Column(
-              children: [
-                const Row(
+        body: ListView(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 30, 20, 10),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Column(
                   children: [
-                    Text(
-                      'تأكيد السحب',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const Row(
+                      children: [
+                        Text(
+                          'تأكيد السحب',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Row(
-                  children: [
-                    Text(
-                      'أنت على وشك تحويل أموال من حسابك في ثرايف',
-                      style: TextStyle(
-                          color: Color.fromRGBO(99, 99, 99, 1), fontSize: 18),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Row(
+                      children: [
+                        Text(
+                          'أنت على وشك تحويل أموال من حسابك في ثرايف',
+                          style: TextStyle(
+                              color: Color.fromRGBO(99, 99, 99, 1),
+                              fontSize: 18),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TransactionAmountCard(
+                        label: 'المبلغ الذي تريد تحويله',
+                        amount: amount!.toStringAsFixed(2)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const TimeLineRow(
+                            icon: Icons.wallet,
+                            text: 'سيتم خصم رسوم بقيمة 5 ر.س.'),
+                        const TimeLineRow(
+                            icon: Icons.watch_later_outlined,
+                            text: 'قد تستغرق عملية التحويل ما بين 12 و24 ساعة'),
+                        const TimeLineRow(
+                            icon: Icons.account_balance_outlined,
+                            text: 'سيتم تحويل المبلغ إلى حسابك في Al Rajhi \n'
+                                ' SA03800000000000027010'),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 43),
+                          child: Container(
+                            height: 70,
+                            width: 2,
+                            color: const Color.fromRGBO(136, 136, 136, 0.2),
+                          ),
+                        ),
+                      ],
+                    ),
+                    TransactionAmountCard(
+                        label: 'المبلغ الذي سيتم استلامه',
+                        amount: finalAmount!.toStringAsFixed(2)),
+                    const SizedBox(
+                      height: 70,
+                    ),
+                    const Divider(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: double.infinity, // Full-width button
+                        height: 50,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TransactionConfirmationMessage()));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(89, 25, 101, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                            ),
+                            child: const Text(
+                              'تأكيد',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                      ),
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TransactionAmountCard(
-                    label: 'المبلغ الذي تريد تحويله',
-                    amount: amount!.toStringAsFixed(2)),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const TimeLineRow(
-                        icon: Icons.wallet, text: 'سيتم خصم رسوم بقيمة 5 ر.س.'),
-                    const TimeLineRow(
-                        icon: Icons.watch_later_outlined,
-                        text: 'قد تستغرق عملية التحويل ما بين 12 و24 ساعة'),
-                    const TimeLineRow(
-                        icon: Icons.account_balance_outlined,
-                        text: 'سيتم تحويل المبلغ إلى حسابك في Al Rajhi \n'
-                            ' SA03800000000000027010'),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 43),
-                      child: Container(
-                        height: 70,
-                        width: 2,
-                        color: const Color.fromRGBO(136, 136, 136, 0.2),
-                      ),
-                    ),
-                  ],
-                ),
-                TransactionAmountCard(
-                    label: 'المبلغ الذي سيتم استلامه',
-                    amount: finalAmount!.toStringAsFixed(2)),
-                const SizedBox(
-                  height: 70,
-                ),
-                const Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: double.infinity, // Full-width button
-                    height: 50,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      TransactionConfirmationMessage()));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(89, 25, 101, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                        ),
-                        child: const Text(
-                          'تأكيد',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
+          ],
         ));
   }
 }

@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Thrivee',
         theme: ThemeData(
-          primaryColor: Colors.purple,
+          primaryColor: Color.fromRGBO(76, 40, 116, 1),
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => BinEntryScreen(),
+          '/': (context) => PinEntryScreen(),
         });
   }
 }

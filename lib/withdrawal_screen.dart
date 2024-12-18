@@ -18,6 +18,7 @@ class _InputAmountState extends State<WithdrawalScreen> {
   void _checkInput() {
     final input = _inputAmountController.text.trim();
     double? amount = double.tryParse(input);
+    double? finalAmount;
     setState(() {
       isButtonEnabled = amount != null;
       isFirstTextEnabled = !isButtonEnabled;
@@ -245,12 +246,22 @@ class _InputAmountState extends State<WithdrawalScreen> {
                           child: ElevatedButton(
                               onPressed: isButtonEnabled
                                   ? () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ConfirmationScreen()),
-                                      );
+                                      double? enteredAmount = double.tryParse(
+                                          _inputAmountController.text);
+
+                                      if (enteredAmount != null) {
+                                        double? finalAmount =
+                                            enteredAmount - 5.00;
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ConfirmationScreen(
+                                                    amount: enteredAmount,
+                                                    finalAmount: finalAmount,
+                                                  )),
+                                        );
+                                      }
                                     }
                                   : null,
                               style: ElevatedButton.styleFrom(

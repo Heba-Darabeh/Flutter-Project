@@ -78,7 +78,7 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
           child: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             // balance information section
@@ -124,6 +124,54 @@ class DashboardScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Insight',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                chartBar(
+                                  day: 'Sat',
+                                  filledHeight: 30,
+                                ),
+                                chartBar(
+                                  day: 'Sun',
+                                  filledHeight: 50,
+                                ),
+                                chartBar(
+                                  day: 'Mon',
+                                  filledHeight: 90,
+                                ),
+                                chartBar(
+                                  day: 'Tue',
+                                  filledHeight: 70,
+                                ),
+                                chartBar(
+                                  day: 'Wed',
+                                  filledHeight: 70,
+                                ),
+                                chartBar(
+                                  day: 'Thu',
+                                  filledHeight: 80,
+                                ),
+                                chartBar(
+                                  day: 'Fri',
+                                  filledHeight: 80,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Directionality(
                           textDirection: TextDirection.rtl,
                           child: Row(
@@ -449,4 +497,31 @@ class Product extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget chartBar({
+  required String day,
+  required double filledHeight,
+}) {
+  return Column(
+    children: [
+      Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            height: 120,
+            width: 30,
+            color: Colors.grey.shade200,
+          ),
+          Container(
+            height: filledHeight,
+            width: 30,
+            color: const Color.fromRGBO(76, 40, 116, 1),
+          ),
+        ],
+      ),
+      const SizedBox(height: 5),
+      Text(day),
+    ],
+  );
 }

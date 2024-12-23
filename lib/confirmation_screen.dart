@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/dashboard_screen.dart';
 import 'package:flutter_project/withdrawal_screen.dart';
 import 'package:flutter_project/TransactionConfirmationMessage.dart';
 
@@ -8,6 +9,142 @@ class ConfirmationScreen extends StatelessWidget {
 
   const ConfirmationScreen(
       {super.key, required this.amount, required this.finalAmount});
+
+  void showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        builder: (BuildContext context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: SizedBox(
+              height: 450,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundColor:
+                            const Color.fromRGBO(221, 221, 221, 0.412),
+                        child: IconButton(
+                          onPressed: () => {Navigator.pop(context)},
+                          icon: const Icon(
+                            Icons.close,
+                            color: Colors.black,
+                            weight: 600,
+                            size: 25,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Color.fromRGBO(221, 221, 221, 0.412),
+                    child: Text(
+                      'i',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Text(
+                    'Are You Sure You Want to Cancel ?',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Text(
+                    'By canceling this transaction, the amount will not be credited to your balance. Do you wish to proceed?',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DashboardScreen()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red[400],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                        ),
+                        child: const Text(
+                          'Yes, I Want to CANCEL This Transaction',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DashboardScreen()))
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                      ),
+                      child: const Text(
+                        'Go Back',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -106,7 +243,34 @@ class ConfirmationScreen extends StatelessWidget {
                     const SizedBox(
                       height: 70,
                     ),
+                    const Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: Color.fromRGBO(119, 119, 119, 1),
+                          size: 20,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(6.0),
+                          child: Text(
+                            'الطلب قيد التحقيق',
+                            style: TextStyle(
+                                color: Color.fromRGBO(119, 119, 119, 1),
+                                fontSize: 14),
+                          ),
+                        )
+                      ],
+                    ),
                     const Divider(),
+                    TextButton(
+                        onPressed: () => showBottomSheet(context),
+                        child: const Text(
+                          'Cancel this transaction',
+                          style: TextStyle(
+                            fontSize: 16,
+                            decoration: TextDecoration.underline,
+                          ),
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
